@@ -1,0 +1,17 @@
+.collection-preview {
+	display: flex;
+	flex-direction: column;
+	// -webkit-flex-wrap: wrap;
+	// flex-wrap: wrap;
+	margin-bottom: 35px;
+
+	.title {
+		font-size: 28px;
+		margin-bottom: 25px;
+	}
+
+	.preview {
+		display: flex;
+		justify-content: space-between;
+	}
+}
