@@ -1,8 +1,8 @@
-import "./homepage.styles.scss";
 import { DirectoryMenu } from "./directory-menu.jsx";
+import { HomepageContainer } from "./homepage.styles";
 
 export const Homepage = () => (
-  <div className="homepage">
-    <DirectoryMenu></DirectoryMenu>
-  </div>
+	<HomepageContainer>
+		<DirectoryMenu></DirectoryMenu>
+	</HomepageContainer>
 );

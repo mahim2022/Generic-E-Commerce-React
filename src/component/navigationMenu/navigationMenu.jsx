@@ -11,7 +11,18 @@ import {
 	CartItemState,
 	CartItemStateProvider,
 } from "../cartComponent/CartItemState/CartItemState";
-
+import {
+	Header,
+	LogoContainer,
+	OptionDiv,
+	OptionLink,
+	OptionsContainer,
+} from "./NavigationMenuStyles";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../Firebase_Google_SignIn/firebase_Google_Signin";
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+///////////////////////////////////////////////
 export const NavigationMenu = () => {
 	const [currentUser] = useContext(CurrentUserContext);
 	const [cart, setCart] = useContext(cartToggle);
@@ -21,41 +32,43 @@ export const NavigationMenu = () => {
 		0
 	);
 
+	const getData = async () => {
+		const docRef = doc(db, "Shopdata", "ShopData");
+		const docSnap = await getDoc(docRef);
+
+		if (docSnap.exists()) {
+			console.log(docSnap.data().shopData);
+		} else {
+			// doc.data() will be undefined in this case
+			console.log("No such document!");
+		}
+	};
+
 	return (
 		<CartItemStateProvider>
-			<div className="header">
-				<Link className="logo-container" to={"/"}>
+			<Header>
+				<LogoContainer to={"/"}>
 					<Logo className="logo" />
-				</Link>
-				<div className="options">
-					<Link className="option" to={"/shop"}>
-						Shop
-					</Link>
-					<Link
-						className="option"
-						to={"/shop"}
-						onClick={() => console.log(cartItem)}
-					>
+				</LogoContainer>
+				<OptionsContainer>
+					<OptionLink to={"/shop"}>Shop</OptionLink>
+					<OptionLink to={"/shop"} onClick={() => getData()}>
 						Contacts
-					</Link>
+					</OptionLink>
 
 					{currentUser ? (
-						<div className="option" onClick={() => auth.signOut()}>
-							SIGN OUT
-						</div>
+						<OptionDiv onClick={() => auth.signOut()}>SIGN OUT</OptionDiv>
 					) : (
-						<Link className="option" to="/signup">
-							SIGN IN
-						</Link>
+						<OptionLink to="/signup">Sign-In</OptionLink>
 					)}
 					<div onClick={() => setCart(!cart)}>
 						<CartComponent count={cartCount}></CartComponent>
 					</div>
-				</div>
+				</OptionsContainer>
 				{cart ? (
 					<CartDropDownComponent item={cartItem}></CartDropDownComponent>
 				) : null}
-			</div>
+			</Header>
 		</CartItemStateProvider>
 	);
 };

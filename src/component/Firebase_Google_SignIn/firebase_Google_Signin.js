@@ -10,13 +10,13 @@ import { collection, addDoc } from "firebase/firestore";
 
 ///FIREBASE CONFIG
 const config = {
-	apiKey: "AIzaSyCdHT-AYHXjF7wOrfAchX4PIm3cSj5tn14",
-	authDomain: "crwn-db.firebaseapp.com",
-	databaseURL: "https://crwn-db.firebaseio.com",
-	projectId: "crwn-db",
-	storageBucket: "crwn-db.appspot.com",
-	messagingSenderId: "850995411664",
-	appId: "1:850995411664:web:7ddc01d597846f65",
+	apiKey: "AIzaSyDFUQBxU6XZGM4f2rCyvOavZ8OJROF54FM",
+	authDomain: "generic-ecommerce-df4ad.firebaseapp.com",
+	projectId: "generic-ecommerce-df4ad",
+	storageBucket: "generic-ecommerce-df4ad.appspot.com",
+	messagingSenderId: "1061463245160",
+	appId: "1:1061463245160:web:0488e2382f7f31c8f396dd",
+	measurementId: "G-8MN0608DL3",
 };
 
 const app = initializeApp(config);

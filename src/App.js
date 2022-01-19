@@ -4,17 +4,18 @@ import { Route, Routes } from "react-router-dom";
 import { ShopPage } from "./component/pages/shop/shop-page";
 import { NavigationMenu } from "./component/navigationMenu/navigationMenu";
 import { SigningPage } from "./component/pages/signingPage/signingPage";
-import React from "react";
+import React, { useContext } from "react";
 import { auth } from "./component/Firebase_Google_SignIn/firebase_Google_Signin";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createContext, useState } from "react";
-import { uploadData } from "./component/Firebase_Google_SignIn/firebase_Google_Signin";
-import { Navigate } from "react-router";
 import { useNavigate } from "react-router";
-import { useContext } from "react";
 import { CartItemStateProvider } from "./component/cartComponent/CartItemState/CartItemState";
 import { CheckOutPage } from "./component/pages/CheckOutPage/CheckOutPageComponent";
 import { TotalPriceProvider } from "./component/cartComponent/CartItemState/TotalPrice";
+import { uploadData } from "./component/Firebase_Google_SignIn/firebase_Google_Signin";
+import { ShopData } from "./component/pages/shop/shopDataState";
+import { doc, setDoc, collection, getDoc } from "firebase/firestore";
+import { db } from "./component/Firebase_Google_SignIn/firebase_Google_Signin";
 
 export const CurrentUserContext = createContext();
 export const cartToggle = createContext();
@@ -25,11 +26,21 @@ const App = () => {
 	///////////CartToggle///////////
 	const [cart, setCart] = useState(false);
 	/////////addToCart////////
+	const [shopData] = useContext(ShopData);
 
 	auth.onAuthStateChanged((user) => {
 		setCurrentUser(user);
 	});
-	let navigate = useNavigate();
+
+	///////////Uploading Shop Data to the FireBase DataBase//////////
+
+	// const UploadShopData = async () => {
+	// 	const collectioRef = collection(db, "Shopdata");
+	// 	await setDoc(doc(collectioRef, "ShopData"), {
+	// 		shopData,
+	// 	});
+	// };
+	// UploadShopData();
 
 	return (
 		<div>
