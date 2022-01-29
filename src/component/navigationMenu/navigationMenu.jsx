@@ -1,4 +1,4 @@
-import "./navigationMenu.scss";
+import "./navigationMenu.css";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "./Logo.svg";
 import { auth } from "../Firebase_Google_SignIn/firebase_Google_Signin";
